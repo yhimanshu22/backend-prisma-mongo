@@ -13,13 +13,19 @@ app.use(cookieParser())
 
 //custom  routes ---->
 const userRouter = require('./routes/userRoutes')
+const postRouter = require('./routes/postRoutes');
+
 
 app.use('/api',userRouter)
+app.use('/api',postRouter)
 
+
+// getting request at home page---------->
 app.get('/',(req,res)=>{
     res.send('Hi from youtube live')
 })
 
+// listening the server-------->
 app.listen(3000,()=>{
     console.log('server is running on port 3000');
 })

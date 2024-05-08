@@ -4,7 +4,7 @@ const prisma = require('../prisma/index')
 
 exports.createPost = async(req,res,next)=>{
     try {
-        const {slug,title,body,authId} = req.body
+        const {slug,title,body,authorId} = req.body
         //validation on you----->
        const result = await prisma.post.create({
         data:{
@@ -15,7 +15,9 @@ exports.createPost = async(req,res,next)=>{
         }
        });
        res.json(result)
+       console.log('post created successfully');
     } catch (error) {
+        
         throw new Error(error)
     }
 }
@@ -33,7 +35,9 @@ exports.updatePost = async(req,res,next)=>{
             }
         })
         res.json(result)
+        console.log('post updated');
     } catch (error) {
+        
         throw new Error(error)
         res.json({error:`post does not exist`})
     }
@@ -47,7 +51,9 @@ exports.deletePost = async(req,res,next)=>{
             where:{id:id}
         });
         res.json(result)
+        console.log('post deleted');
     } catch (error) {
+      
         throw new Error(error)
     }
 }
